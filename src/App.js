@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Stores from './components/Stores';
 import Papa from 'papaparse';
 import './App.css';
 
@@ -15,11 +16,11 @@ const App = () => {
       const stock = results.data // array of objects
       setStock(stock);
     }
-    getData()
+    getData();
   }, [])
   return (
     <div className="App">
-      {stock.map(product => <h2 key={product.Id}>{product.Nombre}</h2>)}
+      <Stores />
     </div>
   );
 }
