@@ -1,14 +1,30 @@
-import * as actionTypes from './actions';
+import * as actionTypes from './types';
 
 const initialState = {
-    products: 10
+    loading: false,
+    stores: [],
+    error: ''
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.BUY_PRODUCT:
+        case actionTypes.FETCH_STORES_REQUEST:
             return {
                 ...state,
-                products: state.products - 1
+                loading: true
+            };
+        case actionTypes.FETCH_STORES_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                stores: action.payload,
+                error: ''
+            };
+        case actionTypes.FETCH_STORES_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                stores: [],
+                error: action.payload
             };
         default:
             return state;
