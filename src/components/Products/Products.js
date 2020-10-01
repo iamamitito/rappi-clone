@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { fetchStores } from '../../store';
+import Product from './Product';
 
-const Products = ({ fetchStores, storesData }) => {
+const Products = ({ fetchStores, storesData, match }) => {
     useEffect(() => {
         fetchStores();
         //eslint-disable-next-line
@@ -12,20 +13,20 @@ const Products = ({ fetchStores, storesData }) => {
     ) : storesData.error ? (
         <h2>{storesData.error}</h2>
     ) : (
-                <div>
-                    <div className="row d-flex justify-content-center py-5">
+                <Fragment>
+                    <h2 className="pl-4">{match.params.name}</h2>
+                    <div className="row d-flex justify-content-center">
                         {
-                            storesData && storesData.map((store) => {
-                                return (
-                                    <div key={store.Id}>
-                                        <h5>{store.Nombre}</h5>
-                                    </div>
-                                )
-                            })
+                            storesData && storesData.map(store => match.params.name === store.Tienda ?
+                                (
+                                    <Product key={store.Id} product={store} />
+                                ) : null
+                            )
                         }
                     </div>
+                </Fragment>
 
-                </div>
+
             )
 }
 const mapStateToProps = state => {

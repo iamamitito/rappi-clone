@@ -2,6 +2,7 @@ import * as actionTypes from './types';
 
 const initialState = {
     loading: false,
+    cart: [],
     stores: [],
     error: ''
 }

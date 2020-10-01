@@ -12,7 +12,7 @@ export const fetchStoresSuccess = (stores) => {
         payload: stores
     }
 }
-const fetchStoresFailure = (error) => {
+export const fetchStoresFailure = (error) => {
     return {
         type: FETCH_STORES_FAILURE,
         payload: error

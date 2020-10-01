@@ -1,5 +1,7 @@
-.App {
-  text-align: center;
+body {
   background-color: #f7f7f7;
+}
+
+.App {
   min-height: 100vh;
 }

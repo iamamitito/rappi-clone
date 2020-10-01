@@ -1,9 +1,9 @@
 import React from 'react';
 import './Store.css';
 
-const Store = ({ name }) => {
+const Store = ({ name, clicked }) => {
     return (
-        <div className="col-md-6 col-lg-3 mb-3">
+        <div onClick={clicked} className="col-md-6 col-lg-4 mb-3 text-center">
             <div className="store-card card border-0 p-4">
                 <h4>{name}</h4>
             </div>
