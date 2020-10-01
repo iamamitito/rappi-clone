@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchStores } from '../store';
+import { fetchStores } from '../../store';
+import Store from './Store';
 const Stores = ({ fetchStores, storesData }) => {
+    const newStores = [...new Set(storesData.map(item => item.Tienda))]
+
     useEffect(() => {
-        fetchStores()
+        fetchStores();
+        //eslint-disable-next-line
     }, [])
     return storesData.loading ? (
         <h2>loading...</h2>
@@ -11,10 +15,14 @@ const Stores = ({ fetchStores, storesData }) => {
         <h2>{storesData.error}</h2>
     ) : (
                 <div>
-                    <h2>Stores List</h2>
-                    <div>
+                    <h2>Nuestras Tiendas</h2>
+                    <div className="row d-flex justify-content-center py-5">
                         {
-                            storesData && storesData.map(store => <p key={store.Id}>{store.Nombre}</p>)
+                            storesData && newStores.map((store, i) => {
+                                return (
+                                    <Store key={i} name={store} />
+                                )
+                            })
                         }
                     </div>
 
