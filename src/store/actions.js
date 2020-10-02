@@ -19,17 +19,18 @@ export const fetchStoresFailure = (error) => {
     }
 }
 
+
 export const fetchStores = () => {
     return async (dispatch) => {
         dispatch(fetchStoresRequest)
         try {
             const response = await fetch('/stock.csv')
             const reader = response.body.getReader()
-            const result = await reader.read() // raw array
+            const result = await reader.read() //  array
             const decoder = new TextDecoder('utf-8')
-            const csv = decoder.decode(result.value) // the csv text
-            const results = Papa.parse(csv, { header: true }) // object with { data, errors, meta }
-            const stock = results.data // array of objects
+            const csv = decoder.decode(result.value) // texto csv
+            const results = Papa.parse(csv, { header: true }) // objecto
+            const stock = results.data // array de objetos
             dispatch(fetchStoresSuccess(stock))
         } catch (error) {
             const errorMsg = error.message

@@ -1,9 +1,10 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchStores } from '../../store';
+import * as actionTypes from '../../store/types';
 import Product from './Product';
 
-const Products = ({ fetchStores, storesData, match }) => {
+const Products = ({ fetchStores, storesData, match, addItem }) => {
     useEffect(() => {
         fetchStores();
         //eslint-disable-next-line
@@ -13,18 +14,18 @@ const Products = ({ fetchStores, storesData, match }) => {
     ) : storesData.error ? (
         <h2>{storesData.error}</h2>
     ) : (
-                <Fragment>
+                <div>
                     <h2 className="pl-4">{match.params.name}</h2>
                     <div className="row d-flex justify-content-center">
                         {
                             storesData && storesData.map(store => match.params.name === store.Tienda ?
                                 (
-                                    <Product key={store.Id} product={store} />
+                                    <Product clicked={() => addItem(store, store.Id)} key={store.Id} product={store} />
                                 ) : null
                             )
                         }
                     </div>
-                </Fragment>
+                </div>
 
 
             )
@@ -36,7 +37,9 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        fetchStores: () => dispatch(fetchStores())
+        fetchStores: () => dispatch(fetchStores()),
+        addItem: (product, id) => dispatch({ type: actionTypes.ADD_PRODUCT, payload: product, id: id }),
+
     }
 };
 

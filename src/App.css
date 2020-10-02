@@ -1,7 +1,22 @@
-body {
+body,
+.app {
   background-color: #f7f7f7;
+  min-height: 100vh;
 }
 
-.App {
-  min-height: 100vh;
+.btn-orange {
+  background-color: #ef6453;
+  color: #fff;
+  cursor: pointer;
+}
+.btn-orange:hover {
+  color: #fff;
+  box-shadow: 0 4px 6px #ccc;
+}
+.btn-orange:disabled {
+  cursor: not-allowed;
+}
+.btn-orange:disabled:hover {
+  color: #fff;
+  box-shadow: none;
 }

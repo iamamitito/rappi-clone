@@ -1,0 +1,21 @@
+.box {
+  padding: 3px 10px;
+  border: 1px solid#ccc;
+  margin: 1px;
+}
+.box.btn-orange {
+  border: 0;
+  border-radius: 3px;
+}
+.cart {
+  background-color: #fff;
+}
+.total {
+  visibility: hidden;
+}
+.total.show {
+  visibility: visible;
+}
+.back-btn {
+  cursor: pointer;
+}
